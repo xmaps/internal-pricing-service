@@ -83,15 +83,11 @@ class OrderPrice(APIView):
             order = Order.objects.get(id=order_id)
         except Order.DoesNotExist:
             order = Order.objects.create(id=order_id, currency=currency)
-            products_in_order = []
             for item in items:
                 product = self.check_product_info(item)
-                products_in_order.append(ProductQuantity.
-                                         objects.create(order=order,
-                                                        product=product,
-                                                        quantity=item['quantity']))
-            order.items.set(products_in_order)
-            order.save()
+                ProductQuantity.objects.create(order=order,
+                                               product=product,
+                                               quantity=item['quantity'])
 
         serialize_fields = ('id', 'items', 'currency', 'total_price',
                             'total_vat', 'customer')

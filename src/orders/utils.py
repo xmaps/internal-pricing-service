@@ -35,8 +35,7 @@ def get_currency_rate(main_currency, requested_currency):
     rate = None
     for i in range(1, 4):  # retries
         try:
-            result = urlfetch.fetch(url=url, method=urlfetch.GET,
-                                    deadline=(5 + i))
+            result = urlfetch.get(url=url, deadline=(5 + i))
             resp = json.loads(result.content)
             rate = resp.get(conversion_key)
             # retry in case of 'Internal Server Error' status code
@@ -44,7 +43,8 @@ def get_currency_rate(main_currency, requested_currency):
                 time.sleep(1)
                 continue
             break
-        except urlfetch.Error as e:
+        except urlfetch.UrlfetchException as e:
+            print(e)
             time.sleep(1)
             continue
 

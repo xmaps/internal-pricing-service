@@ -10,6 +10,9 @@
 9. `python manage.py runserver`
 
 
-
-
 10. To run the tests: `python manage.py behave`
+
+*Note:* Python 3.6 on MacOS uses an embedded version of OpenSSL,
+which does not use the system certificate store. Because of this
+urlfecth gives problems. If it happens to you run this command.
+`/Applications/Python\ 3.6/Install\ Certificates.command`
