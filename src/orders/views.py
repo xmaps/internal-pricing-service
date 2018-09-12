@@ -40,6 +40,11 @@ class OrderPrice(APIView):
                                  'items in the order.',
                                  status.HTTP_400_BAD_REQUEST)
 
+        order_id = requested_data['order']['id']
+        if not isinstance(order_id, int):
+            raise OrderException('Order id needs to be a valid unique number.',
+                                 status.HTTP_400_BAD_REQUEST)
+
         for item in requested_data['order']['items']:
             if 'product_id' not in item or 'quantity' not in item:
                 raise OrderException('Each item in the request needs to have '
@@ -68,8 +73,11 @@ class OrderPrice(APIView):
         return product
 
     def post(self, request):
-
-        requested_data = json.loads(request.data['_content'])
+        # TODO: check deference between tests and browser request
+        if '_content' in request.data:
+            requested_data = json.loads(request.data['_content'])
+        else:
+            requested_data = json.loads(request.data)
         self.check_request_format(requested_data)
 
         requested_order = requested_data['order']
