@@ -37,25 +37,23 @@ urlfecth gives problems. If it happens to you run this command.
 ## Ideas for improvements
 There's always room for improvements. And since this task had a time limit here follows some ideas to improve:
 
-* Add total_vat and vat_price as properties, but couldn’t get them to show on the serializer for the response
+* Add `total_vat` and `vat_price` as properties, but couldn’t get them to show on the serializer for the response
 * I like behave but I would add more unit tests with coverage (and mock the currency api so it doesn't get different responses every time)
 * Check the import data command does not in fact duplicate info
-* Figure out how to proper handle the request.data. It seems that with the tests it goes 
+* Figure out how to proper handle the `request.data`. It seems that with the tests it goes 
 directly to the content of the request but with the Django rest framework page on the browser 
 send more information than just the JSON of the request
 * Since the currency data keeps changing, testing the currency response keeps giving errors so I would use mock for this
-* I'm still divided in the way Django rest framework works. I use google endpoints on a day to day basis 
-and it allows to define sets of messages for request and response for each api without being connected to models. 
-Allows separations, enforces rules and in terms of code it works almost as documentation.
+* I'm still divided in the way Django rest framework works. Another library that could be checked is google endpoints (because it uses ProtoBuf), it allows to define sets of messages for request and response for each api without being connected to models. Allows separations, enforces rules and in terms of code it works almost as documentation.
 * More security and error handling
 * Figure out how to use serializers to force the request to the apis like docs from Django rest framework do.
 * Better documentation on the code and on the README.
 
 ## What bits did you find the toughest? What bit are you most proud of? In both cases, why?
 
-Setting up the BDD tests was tough, I still don’t' have much experience into doing and took time and some trial and error. 
+Setting up the BDD tests was tough, I still don’t have much experience using behave and behave-django and took time and some trial and error. 
 And also tough was the usage of Django rest framework, it's something that I never have the opportunity to use and that 
-correlates to the fact that, I'm most proud of the wayI used the Serializers. It helps to take out logic from the view 
+correlates to the fact i'm most proud of. I used the Serializers and it helps to take out logic from the view 
 and simplify it (despite the fact I still don't know how to use Serializers to force request parameters only response).
 
 ## What one thing could we do to improve this test?
