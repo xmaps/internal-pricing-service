@@ -80,8 +80,8 @@ class PricingFormatter(object):
 
 class Command(BaseCommand):
     help = ('Imports product data from file (product and vatband). '
-            'Argument is file path to json formatted file(s) representing a '
-            'city forecast')
+            'Argument is file path to json formatted file(s) representing '
+            'products pricing information and associated Vat Bands')
 
     def add_arguments(self, parser):
         parser.add_argument('file_path', nargs='+', type=str)
